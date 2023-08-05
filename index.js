@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors"); // Import cors module
+const cors = require("cors"); // Import cors module
 const app = express();
 const db = require("./db/db");
 const { sequelize } = require("./models/index");
@@ -17,7 +17,7 @@ var corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-// app.use(cors(corsOptions)); //Add CORS Middleware
+app.use(cors(corsOptions)); //Add CORS Middleware
 app.use(express.json());
 app.use(router);
 
