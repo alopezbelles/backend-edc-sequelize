@@ -31,10 +31,8 @@ TaskController.addtask = async (req, res) => {
       status,
     });
 
-    // Devuelve la tarea creada como respuesta.
     return res.status(201).json(newTask);
   } catch (error) {
-    // Si ocurre un error, devuelve una respuesta de error.
     return res.status(500).json({ error: "No se pudo crear la tarea" });
   }
 };
@@ -43,17 +41,13 @@ TaskController.addtask = async (req, res) => {
 
 TaskController.edittask = async (req, res) => {
   try {
-    const { id, title, description, status } = req.body; 
-
-    // Buscar el registro por el id_task
+    const { id, title, description, status } = req.body;
 
     const task = await models.task.findOne({ where: { id_task: id } });
 
     if (!task) {
-      // Si no se encuentra el registro, devolver un mensaje de error
       return res.status(404).json({ message: "Task not found" });
     }
-    // Actualizar campos
     task.title = title;
     task.description = description;
     task.status = status;
