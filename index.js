@@ -10,12 +10,12 @@ const PORT = process.env.PORT || 3617;
 
 //CONFIGURACIÓN OPCIONES CORS
 //lo último añadido es control-acces-allow
-// var corsOptions = {
-//   origin: "*",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-// };
+var corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 
 // app.use(cors(corsOptions)); //Add CORS Middleware
 app.use(express.json());

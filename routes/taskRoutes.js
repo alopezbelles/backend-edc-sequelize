@@ -7,6 +7,7 @@ const TaskController = require("../controllers/taskController");
 ///// C R U D   B O O K S  /////
 
 router.get("/getall", TaskController.getall);
+router.post("/addtask", TaskController.addtask);
 
 
 module.exports = router;
