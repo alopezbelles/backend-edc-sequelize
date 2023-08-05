@@ -10,7 +10,9 @@ const { Op } = require("sequelize");
 
 TaskController.getall = async (req, res) => {
   try {
-    let resp = await models.task.findAll({});
+    let resp = await models.task.findAll({
+      order: [['createdAt', 'DESC']],
+    });
 
     res.send(resp);
   } catch (error) {
