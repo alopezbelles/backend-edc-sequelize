@@ -39,6 +39,23 @@ TaskController.addtask = async (req, res) => {
   }
 };
 
+// DELETE TASK FROM DATABASE
 
+TaskController.deletetask = async (req, res) => {
+  try {
+    let id = req.body.id;
+    let resp = await models.task.destroy({
+      where: { id_task: id },
+    });
+
+    if (resp == 1) {
+      res.send("Task has been deleted");
+    } else {
+      res.send("Task could not be deleted");
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 module.exports = TaskController;
