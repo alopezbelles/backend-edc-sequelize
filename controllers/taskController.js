@@ -39,6 +39,34 @@ TaskController.addtask = async (req, res) => {
   }
 };
 
+// UPDATE TASK
+
+TaskController.edittask = async (req, res) => {
+  try {
+    const { id, title, description, status } = req.body; 
+
+    // Buscar el registro por el id_task
+
+    const task = await models.task.findOne({ where: { id_task: id } });
+
+    if (!task) {
+      // Si no se encuentra el registro, devolver un mensaje de error
+      return res.status(404).json({ message: "Task not found" });
+    }
+    // Actualizar campos
+    task.title = title;
+    task.description = description;
+    task.status = status;
+    await task.save();
+
+    res.status(200).json({ message: "Task successfully updated" });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({ message: "Error updating the task" });
+  }
+};
+
 // DELETE TASK FROM DATABASE
 
 TaskController.deletetask = async (req, res) => {
