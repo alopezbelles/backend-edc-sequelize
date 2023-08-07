@@ -27,13 +27,13 @@ app.get('/', (req, res) => {res.send('Pantalla de inicio');});
 
 app.listen(PORT, () => {
   console.log(`Servidor conectado y levantado en el puerto ${PORT}`);
-  // sequelize.sync({ force: true })
+  sequelize.sync({ force: true })
   
-  db.authenticate()
-    .then(() => {
-      console.log("Conectados a la DB");
-    })
-    .catch((error) => {
-      console.log("Se ha producido un error: " + error);
-    });
+  // db.authenticate()
+  //   .then(() => {
+  //     console.log("Conectados a la DB");
+  //   })
+  //   .catch((error) => {
+  //     console.log("Se ha producido un error: " + error);
+  //   });
 });

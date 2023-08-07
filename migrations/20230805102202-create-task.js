@@ -23,6 +23,11 @@ module.exports = {
         defaultValue: 'pending',
         allowNull: false,
       },
+      category: {
+        type: DataTypes.ENUM('work', 'personal', 'studies'),
+        defaultValue: 'personal',
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

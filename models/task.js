@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 'pending',
         allowNull: false,
       },
+      category: {
+        type: DataTypes.ENUM('work', 'personal', 'studies'),
+        defaultValue: 'personal',
+        allowNull: false,
+      },
     },
     {
       sequelize,
