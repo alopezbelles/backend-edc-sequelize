@@ -11,7 +11,7 @@ const { Op } = require("sequelize");
 TaskController.getall = async (req, res) => {
   try {
     let resp = await models.task.findAll({
-      order: [['createdAt', 'DESC']],
+      order: [["createdAt", "DESC"]],
     });
 
     res.send(resp);
@@ -43,7 +43,7 @@ TaskController.addtask = async (req, res) => {
 
 TaskController.edittask = async (req, res) => {
   try {
-    const { id, title, description, status } = req.body;
+    const { id, title, description, status, category } = req.body;
 
     const task = await models.task.findOne({ where: { id_task: id } });
 
@@ -53,6 +53,7 @@ TaskController.edittask = async (req, res) => {
     task.title = title;
     task.description = description;
     task.status = status;
+    task.category = category;
     await task.save();
 
     res.status(200).json({ message: "Task successfully updated" });
@@ -79,6 +80,41 @@ TaskController.deletetask = async (req, res) => {
     }
   } catch (err) {
     res.send(err);
+  }
+};
+
+//ADD CATEGORY
+
+TaskController.addcategory = async (req, res) => {
+  try {
+    const { taskId, category } = req.body;
+
+    if (!taskId) {
+      return res
+        .status(400)
+        .json({
+          error:
+            "Se requiere un ID de tarea válido en el cuerpo de la solicitud",
+        });
+    }
+
+    const task = await Task.findByPk(taskId);
+
+    if (!task) {
+      return res.status(404).json({ error: "No se encontró la tarea" });
+    }
+
+    task.category = category;
+    await task.save();
+
+    return res
+      .status(200)
+      .json({ message: "Categoría agregada correctamente a la tarea" });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: "Error al agregar la categoría a la tarea" });
   }
 };
 

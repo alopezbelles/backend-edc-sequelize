@@ -10,6 +10,7 @@ router.get("/getall", TaskController.getall);
 router.post("/addtask", TaskController.addtask);
 router.delete("/deletetask", TaskController.deletetask);
 router.put("/edittask", TaskController.edittask);
+router.post("/addcategory", TaskController.addcategory);
 
 
 module.exports = router;
